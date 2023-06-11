@@ -1,0 +1,16 @@
+<zk>
+    <vbox align="center" pack="center">
+        <label value="Search for a Book" style="font-size: 18px; font-weight: bold;" />
+        <hbox>
+            <textbox id="searchInput" />
+            <button label="Search" onClick="@command('searchBooks')" />
+        </hbox>
+        <div if="@load(vm.foundBooks)">
+            <hlayout forEach="book : ${vm.foundBooks}">
+                <label value="${book.title}" />
+                <button label="Borrow" onClick="@command('borrowBook', book)" />
+                <button label="Return" onClick="@command('returnBook', book)" disabled="${book.borrowed}" />
+            </hlayout>
+        </div>
+    </vbox>
+</zk>

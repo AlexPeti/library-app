@@ -1,0 +1,14 @@
+<zk>
+    <vbox align="center" pack="center">
+        <label value="Create an account here" style="font-size: 18px; font-weight: bold;" />
+        <hbox>
+            <label value="Username: " />
+            <textbox id="username" />
+        </hbox>
+        <hbox>
+            <label value="Password: " />
+            <textbox id="password" type="password" />
+        </hbox>
+        <button label="Create Account" onClick="@command('createAccount')" />
+    </vbox>
+</zk>
