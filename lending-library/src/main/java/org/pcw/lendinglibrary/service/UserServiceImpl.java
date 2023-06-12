@@ -184,12 +184,43 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
+//    @Override
+//    public void borrowBook(Long userId, Long bookId) throws UserNotFoundException, BookNotFoundException {
+//        try {
+//            JPAHelper.beginTransaction();
+//            User user = userDAO.getById(userId);
+//            Book book = bookDAO.getById(bookId);
+//
+//            if (user == null) {
+//                throw new UserNotFoundException("User not found");
+//            }
+//            if (book == null) {
+//                throw new BookNotFoundException("Book not found");
+//            }
+//
+//            if (user.getBorrowedBook() == null && book.getBorrower() == null) {
+//                user.setBorrowedBook(book);
+//                book.setBorrower(user);
+//
+//                // Update the state of the user and book entities
+//                userDAO.update(user);
+//                bookDAO.update(book);
+//            }
+//            JPAHelper.commitTransaction();
+//        } catch (UserNotFoundException | BookNotFoundException e) {
+//            JPAHelper.rollbackTransaction();
+//            throw e;
+//        } finally {
+//            JPAHelper.closeEntityManager();
+//        }
+//    }
+
     @Override
-    public void borrowBook(Long userId, Long bookId) throws UserNotFoundException, BookNotFoundException {
+    public void borrowBook(String username, String title) throws UserNotFoundException, BookNotFoundException {
         try {
             JPAHelper.beginTransaction();
-            User user = userDAO.getById(userId);
-            Book book = bookDAO.getById(bookId);
+            User user = userDAO.getUsersByUsername(username);
+            Book book = bookDAO.getBookByTitle(title);
 
             if (user == null) {
                 throw new UserNotFoundException("User not found");

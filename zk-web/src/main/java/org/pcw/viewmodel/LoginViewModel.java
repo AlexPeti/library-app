@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-//@NotifyCommands({@NotifyCommand(value = "login", onChange = "_self")})
 public class LoginViewModel extends SelectorComposer<Component> {
 
     private String username;
@@ -47,7 +46,7 @@ public class LoginViewModel extends SelectorComposer<Component> {
             // Handle the response based on the response code
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 // Login successful, redirect to the main.zul page
-                Executions.sendRedirect("main.zul");
+                Executions.sendRedirect("/pages/main.zul");
             } else {
                 // Login failed, display an error message or perform appropriate action
                 System.out.println("Login failed. Invalid credentials.");

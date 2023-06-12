@@ -27,7 +27,7 @@ public interface IUserService {
 
     boolean isUsernameTaken(UserDTO userDTO, String username) throws UsernameAlreadyExistsException;
 
-    void borrowBook(Long userId, Long bookId) throws UserNotFoundException, BookNotFoundException;
-
+//    void borrowBook(Long userId, Long bookId) throws UserNotFoundException, BookNotFoundException;
+    void borrowBook(String username, String title) throws UserNotFoundException, BookNotFoundException;
     void returnBook(Long userId, Long bookId) throws UserNotFoundException, BookNotFoundException;
 }

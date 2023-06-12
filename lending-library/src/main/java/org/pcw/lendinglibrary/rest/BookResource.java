@@ -6,6 +6,8 @@ import org.pcw.lendinglibrary.service.IBookService;
 import org.pcw.lendinglibrary.service.exceptions.BookNotFoundException;
 
 import javax.inject.Inject;
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -31,7 +33,7 @@ public class BookResource {
 
     @GET
     @Path("/get/{title}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public Response getByTitle(@PathParam("title") String title) {
         try {
             Book book = bookService.getBookByTitle(title);
@@ -40,8 +42,4 @@ public class BookResource {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
-
-    //TODO
-    // GET-ALL REST ENDPOINT
-
 }

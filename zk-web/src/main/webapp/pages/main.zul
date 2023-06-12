@@ -1,16 +1,17 @@
-<zk>
-    <vbox align="center" pack="center">
-        <label value="Search for a Book" style="font-size: 18px; font-weight: bold;" />
-        <hbox>
-            <textbox id="searchInput" />
-            <button label="Search" onClick="@command('searchBooks')" />
-        </hbox>
-        <div if="@load(vm.foundBooks)">
-            <hlayout forEach="book : ${vm.foundBooks}">
-                <label value="${book.title}" />
-                <button label="Borrow" onClick="@command('borrowBook', book)" />
-                <button label="Return" onClick="@command('returnBook', book)" disabled="${book.borrowed}" />
-            </hlayout>
-        </div>
-    </vbox>
+<zk xmlns="http://www.zkoss.org/2005/zul"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+    <window apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('org.pcw.viewmodel.MainViewModel')"
+            title="Book Search" border="normal" width="400px">
+        <grid>
+            <rows>
+                <row>
+                    <textbox value="@bind(vm.searchInput)" placeholder="Enter book title"/>
+                    <button label="Search" onClick="@command('searchBooks')"/>
+                </row>
+            </rows>
+        </grid>
+    </window>
 </zk>
+
