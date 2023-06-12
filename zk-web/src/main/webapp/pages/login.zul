@@ -1,6 +1,6 @@
 <zk xmlns="http://www.zkoss.org/2005/zul"
 >
-    <window apply="org.primecognitionworld.viewmodel.LoginViewModel" viewModel="@id('vm') @init('org.primecognitionworld.viewmodel.LoginViewModel')">
+    <window apply="org.pcw.viewmodel.LoginViewModel" viewModel="@id('vm') @init('org.pcw.viewmodel.LoginViewModel')">
         <vbox align="center" pack="center">
             <hbox>
                 <label value="Username: " />
