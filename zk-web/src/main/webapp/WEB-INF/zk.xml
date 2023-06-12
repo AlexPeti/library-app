@@ -9,12 +9,6 @@
 		<value>zk-web</value>
 	</preference>
 	-->
-	<library-property>
 
-		<library-name>jquery</library-name>
-		<static-files>
-			<location>/jquery-3.6.0.min.js</location>
-		</static-files>
-	</library-property>
 	
 </zk>

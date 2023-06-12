@@ -41,4 +41,7 @@ public class BookResource {
         }
     }
 
+    //TODO
+    // GET-ALL REST ENDPOINT
+
 }

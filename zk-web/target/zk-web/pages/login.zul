@@ -1,37 +1,16 @@
-<zk xmlns="http://www.zkoss.org/2005/zul"
->
-    <window apply="org.primecognitionworld.viewmodel.LoginViewModel" viewModel="@id('vm') @init('org.primecognitionworld.viewmodel.LoginViewModel')">
-        <vbox align="center" pack="center">
+<zk>
+    <window viewModel="@id('vm') @init('org.pcw.viewmodel.LoginViewModel')">
+    <vlayout>
             <hbox>
-                <label value="Username: " />
-                <textbox id="username" />
+                <label value="Username:" />
+                <textbox value="@bind(vm.username)" />
             </hbox>
             <hbox>
-                <label value="Password: " />
-                <textbox id="password" type="password" />
+                <label value="Password:" />
+                <textbox type="password" value="@bind(vm.password)" />
             </hbox>
-            <button id="loginBtn" label="Login" onClick="@command('login')" />
-            <label value="Don't have an account? " />
-            <a label="Create one here" href="registration.zul" />
-        </vbox>
-        <script><![CDATA[
-            zk.afterMount(function () {
-                var usernameTextbox = zk.Widget.$('$username'),
-                    passwordTextbox = zk.Widget.$('$password'),
-                    loginButton = zk.Widget.$('$loginBtn');
-
-                loginButton.bind('onClick', function () {
-                    var requestData = {
-                        'username': usernameTextbox.getValue(),
-                        'password': passwordTextbox.getValue()
-                    };
-
-                    zkau.send({
-                        'cmd': 'onLogin',
-                        'data': JSON.stringify(requestData)
-                    });
-                });
-            });
-        ]]></script>
+            <button label="Login" onClick="@command('login')" />
+        </vlayout>
     </window>
 </zk>
+

@@ -1,2 +1,2 @@
-org\primecognitionworld\MyViewModel.class
-org\primecognitionworld\RootRedirectServlet.class
+org\pcw\MyViewModel.class
+org\pcw\viewmodel\LoginViewModel.class

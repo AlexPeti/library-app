@@ -1,72 +1,79 @@
 package org.pcw.viewmodel;
 
-import org.zkoss.json.JSONObject;
-import org.zkoss.zul.Textbox;
+import org.zkoss.bind.annotation.*;
+import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
-import org.zkoss.zk.ui.select.annotation.Wire;
-import org.zkoss.zul.Messagebox;
+import org.zkoss.zk.ui.select.SelectorComposer;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.io.OutputStream;
 
-public class LoginViewModel {
+//@NotifyCommands({@NotifyCommand(value = "login", onChange = "_self")})
+public class LoginViewModel extends SelectorComposer<Component> {
 
-    @Wire
-    private Textbox username;
-    @Wire
-    private Textbox password;
+    private String username;
+    private String password;
 
+    @Init
+    public void init() {
+        username = "";
+        password = "";
+    }
+
+    @Command
+    @NotifyChange({"username", "password"})
     public void login() {
-        String enteredUsername = username.getValue();
-        String enteredPassword = password.getValue();
-
+        // Perform login logic and communication with backend here
         try {
-            // Construct the request URL
+            // Create the URL for the login endpoint
             URL url = new URL("http://localhost:8080/api/user/login");
 
-            // Create the connection
+            // Create a HttpURLConnection for making the POST request
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
 
-            // Construct the JSON data
-            JSONObject jsonData = new JSONObject();
-            jsonData.put("username", enteredUsername);
-            jsonData.put("password", enteredPassword);
+            // Construct the JSON payload for the login request
+            String jsonPayload = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\"}";
 
-            // Send the request
-            OutputStream outputStream = connection.getOutputStream();
-            outputStream.write(jsonData.toString().getBytes());
-            outputStream.flush();
+            // Write the JSON payload to the request body
+            connection.getOutputStream().write(jsonPayload.getBytes());
 
-            // Get the response
+            // Get the response code
             int responseCode = connection.getResponseCode();
 
+            // Handle the response based on the response code
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                // Login successful
-                // TODO: Process the response and handle successful login
-                Messagebox.show("Login successful");
-
-                // Redirect to the desired page
-                Executions.sendRedirect("/pages/main.zul");
+                // Login successful, redirect to the main.zul page
+                Executions.sendRedirect("main.zul");
             } else {
-                // Login failed
-                // TODO: Handle failed login
-                Messagebox.show("Login failed");
+                // Login failed, display an error message or perform appropriate action
+                System.out.println("Login failed. Invalid credentials.");
             }
 
             // Close the connection
             connection.disconnect();
-        } catch (java.net.ConnectException e) {
-            // Connection error occurred
+        } catch (IOException e) {
+            // Handle any IO exception that occurs
             e.printStackTrace();
-            Messagebox.show("Failed to connect to the backend server. Please make sure it is running.");
-        } catch (Exception e) {
-            // Other error occurred
-            e.printStackTrace();
-            Messagebox.show("An error occurred during login. Please try again later.");
         }
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
