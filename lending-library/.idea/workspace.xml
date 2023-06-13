@@ -10,10 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fd773fa-31eb-4421-9167-1fb6e6985c85" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/login.zul" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/login.zul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/registration.zul" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/registration.zul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zk-web/target/zk-web/pages/login.zul" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/target/zk-web/pages/login.zul" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../zk-web/target/zk-web/pages/registration.zul" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/target/zk-web/pages/registration.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zk-web/src/main/java/org/pcw/viewmodel/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/src/main/java/org/pcw/viewmodel/MainViewModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +190,7 @@
       <workItem from="1686518232010" duration="2619000" />
       <workItem from="1686521575354" duration="2075000" />
       <workItem from="1686558504461" duration="16215000" />
-      <workItem from="1686590615759" duration="13208000" />
+      <workItem from="1686590615759" duration="13660000" />
     </task>
     <servers />
   </component>

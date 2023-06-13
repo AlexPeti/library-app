@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class MainViewModel extends SelectorComposer<Component> {
 
@@ -17,6 +18,7 @@ public class MainViewModel extends SelectorComposer<Component> {
 
     @Command
     public void searchBooks() {
+        searchInput = searchInput.replace(" ", "%20");
         try {
             URL url = new URL("http://localhost:8080/api/book/get/" + searchInput);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
