@@ -10,7 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fd773fa-31eb-4421-9167-1fb6e6985c85" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../zk-web/src/main/java/org/pcw/viewmodel/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/src/main/java/org/pcw/viewmodel/MainViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/book.zul" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/book.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/login.zul" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/login.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/main.zul" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/main.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/registration.zul" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/src/main/webapp/pages/registration.zul" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../zk-web/target/zk-web/pages/login.zul" beforeDir="false" afterPath="$PROJECT_DIR$/../zk-web/target/zk-web/pages/login.zul" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +73,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.pcw.lendinglibrary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.pcw.lendinglibrary.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.pcw.lendinglibrary.Main" />
+      <module name="lending-library" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.pcw.lendinglibrary.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -163,11 +180,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.org.pcw.lendinglibrary.Main" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.72" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.org.pcw.lendinglibrary.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -190,7 +209,7 @@
       <workItem from="1686518232010" duration="2619000" />
       <workItem from="1686521575354" duration="2075000" />
       <workItem from="1686558504461" duration="16215000" />
-      <workItem from="1686590615759" duration="13660000" />
+      <workItem from="1686590615759" duration="21275000" />
     </task>
     <servers />
   </component>

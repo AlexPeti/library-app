@@ -1,5 +1,6 @@
 <zk>
     <window viewModel="@id('vm') @init('org.pcw.viewmodel.RegistrationViewModel')">
+        <div style="display: flex; justify-content: center; align-items: flex-start; height: 80vh;">
         <vlayout>
             <hbox>
                 <label value="Username:" />
@@ -11,6 +12,7 @@
             </hbox>
             <button label="Register" onClick="@command('register')" />
         </vlayout>
+        </div>
     </window>
 </zk>
 
