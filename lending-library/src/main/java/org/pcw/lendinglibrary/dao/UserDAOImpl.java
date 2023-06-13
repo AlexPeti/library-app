@@ -54,23 +54,6 @@ public class UserDAOImpl implements IUserDAO {
     }
 
     @Override
-    public User getUsersByUsername(String username) {
-        CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<User> selectQuery = builder.createQuery(User.class);
-        Root<User> root = selectQuery.from(User.class);
-        ParameterExpression<String> uUsername = builder.parameter(String.class);
-        selectQuery.select(root).where(builder.like(root.get("username"), uUsername));
-
-        TypedQuery<User> query = getEntityManager().createQuery(selectQuery);
-        query.setParameter(uUsername, username + "%");
-        List<User> resultList = query.getResultList();
-        if (resultList.isEmpty()) {
-            return null;
-        }
-        return resultList.get(0);
-    }
-
-    @Override
     public User getUserByUsername(String username) {
         CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
         CriteriaQuery<User> selectQuery = builder.createQuery(User.class);

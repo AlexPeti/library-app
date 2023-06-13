@@ -1,71 +1,7 @@
-package org.pcw.viewmodel;//package org.pcw.viewmodel;
+package org.pcw.viewmodel;
 
-//import org.zkoss.bind.annotation.Command;
-//import org.zkoss.zk.ui.Component;
-//import org.zkoss.zk.ui.select.SelectorComposer;
-//
-//import java.io.IOException;
-//import java.net.HttpURLConnection;
-//import java.net.URL;
-//
-///**
-// * WORKS BUT DOES NOT BORROW OR RETURN
-// */
-//public class BookViewModel extends SelectorComposer<Component> {
-//
-//    private String bookTitle;
-//    private String username;
-//
-//    public BookViewModel() {
-//    }
-//
-//
-//    // Constructor to inject the LoginViewModel
-//    public BookViewModel(LoginViewModel loginViewModel) {
-//        this.username = loginViewModel.getUsername();
-//    }
-//
-//    @Command
-//    public void borrowBook() {
-//        try {
-//            URL url = new URL("http://localhost:8080/api/user/borrow/" + username + "/" + bookTitle);
-//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//            connection.setRequestMethod("POST");
-//            connection.setRequestProperty("Content-Type", "application/json");
-//            connection.getResponseCode();
-//            connection.disconnect();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    @Command
-//    public void returnBook() {
-//        try {
-//            URL url = new URL("http://localhost:8080/api/user/return/" + username + "/" + bookTitle);
-//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//            connection.setRequestMethod("POST");
-//            connection.setRequestProperty("Content-Type", "application/json");
-//            connection.getResponseCode();
-//            connection.disconnect();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    // Getter and Setter for bookTitle
-//
-//    public void setBookTitle(String bookTitle) {
-//        this.bookTitle = bookTitle;
-//    }
-//
-//    public String getBookTitle() {
-//        return bookTitle;
-//    }
-//
-//}
-
-
+import org.json.JSONObject;
+import org.pcw.util.GlobalData;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.zk.ui.Component;
@@ -76,6 +12,7 @@ import org.zkoss.zul.Label;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -87,17 +24,9 @@ public class BookViewModel extends SelectorComposer<Component> {
     @Wire("#bookTitleLabel")
     private Label bookTitleLabel;
 
-//    @Init
-//    public void init(@ContextParam(ContextType.PAGE) Page page) {
-//        // Retrieve the book title from the label component
-//        if (bookTitleLabel != null) {
-//            bookTitle = bookTitleLabel.getValue();
-//        }
-//    }
-
     @Init
     public void init() {
-        // Retrieve the book title from the query parameter
+        // Retrieve the book title
         HttpServletRequest request = (HttpServletRequest) Executions.getCurrent().getNativeRequest();
         bookTitle = request.getParameter("title");
     }
@@ -105,25 +34,54 @@ public class BookViewModel extends SelectorComposer<Component> {
     @Command
     public void borrowBook() {
         try {
-            URL url = new URL("http://localhost:8080/api/user/borrow/" + username + "/" + bookTitle);
+            String username = GlobalData.getUsername();
+
+            URL url = new URL("http://localhost:8080/api/user/borrow");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "text/plain");
-            connection.getResponseCode();
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            // Create the JSON payload
+            JSONObject payload = new JSONObject();
+            payload.put("username", username);
+            payload.put("bookTitle", bookTitle);
+
+            // Write the JSON payload to the connection's output stream
+            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+            writer.write(payload.toString());
+            writer.flush();
+
+            int responseCode = connection.getResponseCode();
             connection.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
     @Command
     public void returnBook() {
         try {
-            URL url = new URL("http://localhost:8080/api/user/return/" + username + "/" + bookTitle);
+            String username = GlobalData.getUsername();
+
+            URL url = new URL("http://localhost:8080/api/user/return");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "text/plain");
-            connection.getResponseCode();
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+            // Create the JSON payload
+            JSONObject payload = new JSONObject();
+            payload.put("username", username);
+            payload.put("bookTitle", bookTitle);
+
+            // Write the JSON payload to the connection's output stream
+            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+            writer.write(payload.toString());
+            writer.flush();
+
+            int responseCode = connection.getResponseCode();
             connection.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
@@ -148,16 +106,3 @@ public class BookViewModel extends SelectorComposer<Component> {
         return username;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

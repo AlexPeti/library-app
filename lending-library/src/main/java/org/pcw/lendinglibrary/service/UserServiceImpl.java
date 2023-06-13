@@ -219,7 +219,7 @@ public class UserServiceImpl implements IUserService {
     public void borrowBook(String username, String title) throws UserNotFoundException, BookNotFoundException {
         try {
             JPAHelper.beginTransaction();
-            User user = userDAO.getUsersByUsername(username);
+            User user = userDAO.getUserByUsername(username);
             Book book = bookDAO.getBookByTitle(title);
 
             if (user == null) {
@@ -247,12 +247,11 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void returnBook(Long userId, Long bookId) throws UserNotFoundException, BookNotFoundException {
+    public void returnBook(String username, String title) throws UserNotFoundException, BookNotFoundException {
         try {
             JPAHelper.beginTransaction();
-
-            User user = userDAO.getById(userId);
-            Book book = bookDAO.getById(bookId);
+            User user = userDAO.getUserByUsername(username);
+            Book book = bookDAO.getBookByTitle(title);
 
             if (user == null) {
                 throw new UserNotFoundException("User not found");

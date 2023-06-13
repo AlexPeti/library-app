@@ -14,8 +14,6 @@ public interface IUserDAO {
 
     List<User> getByUsername(String username);
 
-    User getUsersByUsername(String username);
-
     User getUserByUsername(String username);
 
     User getById(Long id);

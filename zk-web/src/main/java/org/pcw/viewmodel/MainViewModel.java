@@ -1,6 +1,7 @@
 package org.pcw.viewmodel;
 
 import org.zkoss.bind.annotation.Command;
+import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.SelectorComposer;
 
@@ -10,7 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MainViewModel extends SelectorComposer {
+public class MainViewModel extends SelectorComposer<Component> {
 
     private String searchInput;
 
@@ -27,7 +28,6 @@ public class MainViewModel extends SelectorComposer {
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String bookTitle = in.readLine();
 
-                // Redirect to book.zul page with bookTitle as a parameter
                 Executions.sendRedirect("/pages/book.zul?title=" + bookTitle);
             }
 
