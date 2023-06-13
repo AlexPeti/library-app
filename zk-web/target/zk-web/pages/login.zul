@@ -10,6 +10,13 @@
                 <textbox type="password" value="@bind(vm.password)" />
             </hbox>
             <button label="Login" onClick="@command('login')" />
+
+        <hbox>
+            <label value="Don't have an account? " />
+            <a href="/pages/registration.zul">
+                <label value="Register here" style="color: blue; text-decoration: underline; cursor: pointer;" />
+            </a>
+        </hbox>
         </vlayout>
     </window>
 </zk>

@@ -1,14 +1,17 @@
 <zk>
-    <vbox align="center" pack="center">
-        <label value="Create an account here" style="font-size: 18px; font-weight: bold;" />
-        <hbox>
-            <label value="Username: " />
-            <textbox id="username" />
-        </hbox>
-        <hbox>
-            <label value="Password: " />
-            <textbox id="password" type="password" />
-        </hbox>
-        <button label="Create Account" onClick="@command('createAccount')" />
-    </vbox>
+    <window viewModel="@id('vm') @init('org.pcw.viewmodel.RegistrationViewModel')">
+        <vlayout>
+            <hbox>
+                <label value="Username:" />
+                <textbox value="@bind(vm.username)" />
+            </hbox>
+            <hbox>
+                <label value="Password:" />
+                <textbox type="password" value="@bind(vm.password)" />
+            </hbox>
+            <button label="Register" onClick="@command('register')" />
+        </vlayout>
+    </window>
 </zk>
+
+
